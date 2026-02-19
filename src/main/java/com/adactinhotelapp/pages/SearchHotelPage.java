@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import com.adactinhotelapp.constants.AppConstants;
@@ -53,6 +54,15 @@ public class SearchHotelPage extends BasePage {
 	
 	@FindBy(xpath = "//span [@id = 'checkin_span']")
 	private WebElement CheckInErrorMsg2;
+	
+	@FindBy(id = "location_0")
+	private WebElement locationOnSelectHotel;
+	
+	@FindBy(id = "arr_date_0")
+	private WebElement CheckindateOnSelectHotel;
+	
+	@FindBy(id = "dep_date_0")
+	private WebElement CheckOutdateOnSelectHotel;
 	
 	public SearchHotelPage(WebDriver driver) {
 		super(driver);
@@ -117,6 +127,25 @@ public class SearchHotelPage extends BasePage {
 	{
 	return CheckInErrorMsg2.getText();
 	}
+	
+	public String locationOnSelectHotel() 
+	{
+	 wait.until(ExpectedConditions.visibilityOf(locationOnSelectHotel));
+	 return locationOnSelectHotel.getAttribute("value").trim();
+	}
+	
+	public String CheckindateOnSelectHotel() 
+	{
+	 wait.until(ExpectedConditions.visibilityOf( CheckindateOnSelectHotel));
+	 return  CheckindateOnSelectHotel.getAttribute("value").trim();
+	}
+	
+	public String CheckOutdateOnSelectHotel() 
+	{
+	 wait.until(ExpectedConditions.visibilityOf(CheckOutdateOnSelectHotel));
+	 return CheckOutdateOnSelectHotel.getAttribute("value").trim();
+	}
+	
 	
 	public void SearchHotel(HashMap<String, String> dataMap) {
 		locationDropdown.sendKeys(dataMap.get("Location"));
