@@ -43,7 +43,7 @@ public class BaseTest {
                 "image/png"
             );
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         driver.quit();
         ChainTestListener.log("Browser closed ...");
     }

@@ -85,9 +85,10 @@ public class SearchHotelPage extends BasePage {
 		HotelDropdown.sendKeys(option);
 	}
 	
-	public void RoomtypeDropdown(String option)
+	public String RoomtypeDropdown(String option)
 	{	
 		RoomtypeDropdown.sendKeys(option);
+		return RoomtypeDropdown.getAttribute("value");
 	}
 	
 	public void RoomNosDropdown(String option)

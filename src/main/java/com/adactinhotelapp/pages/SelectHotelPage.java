@@ -29,6 +29,17 @@ public class SelectHotelPage extends BasePage {
 	@FindBy(id = "rooms_0")
 	private WebElement NoofroomsOnSelectHotel;
 	
+	@FindBy(id = "room_type_0")
+	private WebElement RoomtypeOnSelectHotel;
+	
+	@FindBy(id = "no_days_0")
+	private WebElement NoofdaysSelectHotel;
+	
+	@FindBy(id = "price_night_0")
+	private WebElement PricePerNightonSelectHotel;
+	
+	@FindBy(id = "total_price_0")
+	private WebElement TotalPriceonSelectHotel;
 	
 	public SelectHotelPage(WebDriver driver) {
 		super(driver);
@@ -55,7 +66,6 @@ public class SelectHotelPage extends BasePage {
 	 return CheckOutdateOnSelectHotel.getAttribute("value").trim();
 	}
 	
-	
 	 public int NoofroomsOnSelectHotel() 
 	 {
 		 wait.until(ExpectedConditions.visibilityOf(NoofroomsOnSelectHotel));
@@ -63,4 +73,36 @@ public class SelectHotelPage extends BasePage {
 	        String number = text.split(" ")[0];
 	        return Integer.parseInt(number);
 	    }
+	 public String RoomtypeOnSelectHotel() 
+		{
+		 wait.until(ExpectedConditions.visibilityOf(RoomtypeOnSelectHotel));
+		 return RoomtypeOnSelectHotel.getAttribute("value").trim();
+		}
+	 
+	 public int NoofdaysSelectHotel() 
+	 {
+		 wait.until(ExpectedConditions.visibilityOf(NoofdaysSelectHotel));
+	        String text = NoofdaysSelectHotel.getAttribute("value").trim();
+	        String number = text.split(" ")[0];
+	        return Integer.parseInt(number);
+	  }
+	 
+	 public int PricePerNight() 
+	 {
+		 wait.until(ExpectedConditions.visibilityOf(PricePerNightonSelectHotel));
+	        String text = PricePerNightonSelectHotel.getAttribute("value").trim();
+	        String number = text.split(" ")[2];
+	        return Integer.parseInt(number);
+	  }
+	 
+	 public int TotalPriceonSelectHotel() 
+	 {
+		 wait.until(ExpectedConditions.visibilityOf(TotalPriceonSelectHotel));
+	        String text = TotalPriceonSelectHotel.getAttribute("value").trim();
+	        String number = text.split(" ")[2];
+	        return Integer.parseInt(number);
+	 }
+	 
+	 
+	 
 }
