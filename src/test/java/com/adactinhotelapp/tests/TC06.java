@@ -1,5 +1,7 @@
 package com.adactinhotelapp.tests;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.HashMap;
 
 import org.openqa.selenium.support.PageFactory;
@@ -14,9 +16,9 @@ import com.adactinhotelapp.pages.SearchHotelPage;
 import com.adactinhotelapp.pages.SelectHotelPage;
 import com.adactinhotelapp.utils.ExcelUtils;
 
-public class TC05 extends BaseTest {
+public class TC06 extends BaseTest {
 	@Test(dataProvider = "getTestData")
-	public void validateSearchHotelTest(HashMap<String, String> dataMap) 
+	public void validateSearchHotelTest(HashMap<String, String> dataMap) throws InterruptedException 
 	{
 		LoginPage lp=new LoginPage(driver);
 		lp.doLogin();
@@ -29,10 +31,13 @@ public class TC05 extends BaseTest {
 		shp.CheckInDate(dataMap.get("Checkindate"));
 		shp.CheckOutDate(dataMap.get("Checkoutdate"));
 		shp.adultsPerRoomDropdown(dataMap.get("Adults per Room"));
+		int Expectedrooms = shp.getSelectedRoomCount();
 		shp.SearchButton();
-		SelectHotelPage SelectHotel = new SelectHotelPage(driver);
-		Assert.assertEquals(SelectHotel.CheckindateOnSelectHotel(), dataMap.get("Checkindate"));
-		Assert.assertEquals(SelectHotel.CheckOutdateOnSelectHotel(), dataMap.get("Checkoutdate"));
+		Thread.sleep(3000);
+		System.out.println(driver.getPageSource());
+		SelectHotelPage SelectHotel =new SelectHotelPage(driver);
+		int Actualrooms =	SelectHotel.NoofroomsOnSelectHotel();
+		Assert.assertEquals(Expectedrooms, Actualrooms);
 	}
 	
 	@DataProvider

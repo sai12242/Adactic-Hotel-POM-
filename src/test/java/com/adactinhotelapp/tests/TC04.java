@@ -11,6 +11,7 @@ import com.adactinhotelapp.base.BaseTest;
 import com.adactinhotelapp.constants.AppConstants;
 import com.adactinhotelapp.pages.LoginPage;
 import com.adactinhotelapp.pages.SearchHotelPage;
+import com.adactinhotelapp.pages.SelectHotelPage;
 import com.adactinhotelapp.utils.ExcelUtils;
 
 public class TC04 extends BaseTest {
@@ -29,14 +30,15 @@ public class TC04 extends BaseTest {
 		shp.CheckOutDate(dataMap.get("Checkoutdate"));
 		shp.adultsPerRoomDropdown(dataMap.get("Adults per Room"));
 		shp.SearchButton();
-		Assert.assertEquals(shp.locationOnSelectHotel(), dataMap.get("Location"));
+		SelectHotelPage SelectHotel = new SelectHotelPage(driver);
+		Assert.assertEquals(SelectHotel.locationOnSelectHotel(), dataMap.get("Location"));
 	}
 	
 	@DataProvider
 	public Object[][] getTestData()
 	{
 		Object[][] data=new Object[1][1];
-		HashMap<String, String> testDataMap=ExcelUtils.getTestDataFromExcel("TC04");
+		HashMap<String, String> testDataMap=ExcelUtils.getTestDataFromExcel("TC06");
 		data[0][0]=testDataMap;
 		return data;
 		

@@ -64,6 +64,9 @@ public class SearchHotelPage extends BasePage {
 	@FindBy(id = "dep_date_0")
 	private WebElement CheckOutdateOnSelectHotel;
 	
+	@FindBy(id = "rooms_1")
+	private WebElement NoofroomsOnSelectHotel;
+	
 	public SearchHotelPage(WebDriver driver) {
 		super(driver);
 		this.driver=driver;
@@ -128,23 +131,15 @@ public class SearchHotelPage extends BasePage {
 	return CheckInErrorMsg2.getText();
 	}
 	
-	public String locationOnSelectHotel() 
-	{
-	 wait.until(ExpectedConditions.visibilityOf(locationOnSelectHotel));
-	 return locationOnSelectHotel.getAttribute("value").trim();
-	}
 	
-	public String CheckindateOnSelectHotel() 
-	{
-	 wait.until(ExpectedConditions.visibilityOf( CheckindateOnSelectHotel));
-	 return  CheckindateOnSelectHotel.getAttribute("value").trim();
-	}
 	
-	public String CheckOutdateOnSelectHotel() 
-	{
-	 wait.until(ExpectedConditions.visibilityOf(CheckOutdateOnSelectHotel));
-	 return CheckOutdateOnSelectHotel.getAttribute("value").trim();
-	}
+	 public int getSelectedRoomCount()
+	 {
+	        String text = RoomNosDropdown.getAttribute("value");
+	        String number = text.split(" ")[0];
+	        return Integer.parseInt(number);
+	    }
+	
 	
 	
 	public void SearchHotel(HashMap<String, String> dataMap) {
